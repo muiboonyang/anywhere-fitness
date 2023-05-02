@@ -301,7 +301,7 @@ STATIC_URL = '/static/'
 
 if IS_HEROKU:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'build/static/')
+        os.path.join(BASE_DIR, 'build/static')
     ]
 else:
     STATICFILES_DIRS = [
