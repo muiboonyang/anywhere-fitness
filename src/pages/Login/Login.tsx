@@ -67,11 +67,9 @@ const Login = () => {
     const loginUser = async () => {
         if (formHasNoError) {
             setIsLoading(true)
-            const baseUrl = process.env.REACT_APP_BASE_URL;
-
             try {
                 const res = await fetch(
-                    `${baseUrl}/auth/login/`,
+                    `/auth/login/`,
                     {
                         method: "POST",
                         headers: {

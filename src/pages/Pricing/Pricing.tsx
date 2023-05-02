@@ -12,8 +12,7 @@ const Pricing = () => {
     const getPricingData = async () => {
         setIsLoading(true)
         try {
-            const baseUrl = process.env.REACT_APP_BASE_URL;
-            const res = await fetch(`${baseUrl}/packages/view-all/`);
+            const res = await fetch(`/packages/view-all/`);
             const data = await res.json();
             setIsLoading(false)
 

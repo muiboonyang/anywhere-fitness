@@ -13,7 +13,6 @@ import {FormHelperText} from "@mui/material";
 const CreateAccount = () => {
     const {isLoading, setIsLoading, alertMessage, setAlertMessage} = useContext(AuthContext);
     const navigate = useNavigate();
-    const baseUrl = process.env.REACT_APP_BASE_URL;
 
     //================
     // React Hook Form
@@ -90,7 +89,7 @@ const CreateAccount = () => {
             setIsLoading(true);
             try {
                 const res = await fetch(
-                    `${baseUrl}/auth/register/`,
+                    `/auth/register/`,
                     {
                         method: "POST",
                         headers: {

@@ -12,8 +12,7 @@ const Schedule = () => {
     const getScheduleData = async () => {
         setIsLoading(true)
         try {
-            const baseUrl = process.env.REACT_APP_BASE_URL;
-            const res = await fetch(`${baseUrl}/layout/view-all/`);
+            const res = await fetch(`/layout/view-all/`);
             const data = await res.json();
             setIsLoading(false)
 

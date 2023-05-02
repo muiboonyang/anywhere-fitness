@@ -25,8 +25,7 @@ const InstructorProfile = () => {
     const getInstructorData = async () => {
         setIsLoading(true)
         try {
-            const baseUrl = process.env.REACT_APP_BASE_URL;
-            const res = await fetch(`${baseUrl}/instructors/view-all/`);
+            const res = await fetch(`/instructors/view-all/`);
             const data = await res.json();
             setIsLoading(false)
 

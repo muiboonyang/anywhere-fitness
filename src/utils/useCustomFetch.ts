@@ -12,10 +12,7 @@ const useCustomFetch = () => {
     const navigate = useNavigate();
     const {jwtTokens, setJwtTokens, setUserProfile, setAlertMessage } = useContext(AuthContext);
 
-    const baseUrl = process.env.REACT_APP_BASE_URL;
-
     const originalRequest = async (url: string, config: {}) => {
-        url = `${baseUrl}${url}`;
         const res = await fetch(url, config);
         const data = await res.json();
         // console.log("PROCESSING:", data);
@@ -25,7 +22,7 @@ const useCustomFetch = () => {
     // Token refresh process
     const refreshToken = async () => {
         const res = await fetch(
-            `${baseUrl}/auth/refreshtoken/`,
+            `/auth/refreshtoken/`,
             {
                 method: "POST",
                 headers: {
