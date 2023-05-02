@@ -116,7 +116,8 @@ ROOT_URLCONF = 'gym.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -291,24 +292,25 @@ CORS_ALLOWED_ORIGINS = [
 # Configuring static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-#######################################
-#           DEVELOPMENT
-#######################################
-# The URL to use when referring to static files (where they will be served from)
-STATIC_URL = 'static/'
+# https://dev.to/mdrhmn/deploying-react-django-app-using-heroku-2gfa
 
-#######################################
-#           PRODUCTION
-#######################################
+# The URL to use when referring to static files (where they will be served from)
+STATIC_URL = '/static/'
 
 # Points to static folder in gym folder (alongside settings.py)
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'gym/static/')
-]
+
+if IS_HEROKU:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'build/static/')
+    ]
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'gym/static/')
+    ]
 
 # Points to static folder in root directory (alongside manage.py)
 # Collected static files from the project will be stored in this folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Add compression and caching support
 # This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend
