@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  margin: 80px auto 0;
+  color: rgb(160, 160, 160);
+}
+
+.containerMobile {
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  margin: auto;
+  color: rgb(160, 160, 160);
+}
+
+.name {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.classRide {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: rgb(226, 27, 183);
+  font-weight: bold;
+}
+
+.classResistance {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: rgb(0, 225, 255);
+  font-weight: bold;
+}
+
+.column {
+  flex: 1;
+  min-width: 300px;
+  max-width: 450px;
+  border-radius: 15px;
+  padding: 1px;
+  margin-right: 20px;
+}
+
+.column img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px grey;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: 5%;
+  margin-bottom: 50px;
+}
+
+.backButton {
+  background-color: rgb(0 0 0);
+  padding: 0;
+  font-size: 50px;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.backButton:hover {
+  color: rgb(255 193 7);
+}

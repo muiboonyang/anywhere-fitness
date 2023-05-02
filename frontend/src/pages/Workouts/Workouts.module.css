@@ -1,0 +1,116 @@
+.workoutsContainer {
+  background-color: black;
+  position: relative;
+}
+
+.workoutsContainer h2 {
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 3rem;
+}
+
+.classContainer {
+  margin-top: 0px;
+}
+
+.classContainer a {
+  text-decoration: none;
+}
+
+.classDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  width: 100%;
+  height: 50vh;
+  transition: transform 0.5s;
+  opacity: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.classDetailsContainer:hover {
+  /*transform: scale(1.05);*/
+  opacity: 0.7;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 2vw;
+  width: 50vw;
+  color: white;
+}
+
+@media all and (max-width: 768px) {
+   .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+.resistance {
+  /*background-color: rgb(0, 225, 255);*/
+  background-image: url("https://i.imgur.com/DiOWrDJ.jpg");
+  background-position: 0% 50%;
+}
+
+.resistance .title {
+  color: rgb(0, 225, 255);
+  margin-left: 10%;
+  margin-top: 3%;
+}
+
+.resistance .description {
+  margin-left: 5%;
+}
+
+
+.ride {
+  /*background-color: rgb(226, 27, 183);*/
+  background-image: url("https://i.imgur.com/HtP80kn.jpg");
+  background-position: 0% 30%;
+}
+
+.ride .title {
+  color: rgb(226, 27, 183);
+  margin-left: 69%;
+  margin-top: 5%;
+}
+
+.ride .description {
+  margin-left: 50%;
+  margin-right: 5%;
+}
+
+@media all and (max-width: 768px) {
+  .resistance .title {
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+
+  .resistance .description {
+    margin-left: 10%;
+    margin-right: 0%;
+  }
+
+  .ride .title {
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+
+  .ride .description {
+    margin-left: 10%;
+    margin-right: 40%;
+  }
+}

@@ -1,0 +1,37 @@
+1) Change settings.py
+'HOST': 'host.docker.internal'
+
+###########################################
+Correct way to build docker file
+###########################################
+
+2) Build and run your app with Compose
+docker compose up
+
+###########################################
+
+OR
+
+2) Build docker image
+docker build . -t project4-backend
+
+3) Check if listening correctly at port (e.g. 80) stated in docker-compose file
+Check via postman: http://localhost:80/auth/login/
+
+4) Check docker images that are currently running
+docker ps
+
+5) Stop docker image / container
+docker stop 3 (just need to type the first number of image) // E.g. NAMES - 320d5xxx
+
+// Naming conventions of docker
+> verb + someone's name
+> E.g. "condascending_hypatia" - names given automatically
+
+===============================
+
+6) How to share your docker files (create tar file)
+docker save project4-backend_web > project4-backend.tar
+
+7) What your teammates have to run:
+docker load -i <name.tar> // docker load -i project4-backend.tar

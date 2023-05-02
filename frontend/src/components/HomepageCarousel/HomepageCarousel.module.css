@@ -1,0 +1,30 @@
+.carousel {
+  text-align: center;
+  position: relative;
+  margin: auto;
+  /*width: 100%;*/
+  height: 100vh;
+}
+
+.carousel img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: top center;
+}
+
+footer {
+  padding-top: 0px;
+}
+
+/* .carouselCaption {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 27%;
+  margin-right: 40%;
+}
+
+.carouselCaption p {
+  font-size: 65px;
+} */

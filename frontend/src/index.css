@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Charlotte";
+  src: url("./fonts/Charlotte/Charlotte.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Charlotte";
+}

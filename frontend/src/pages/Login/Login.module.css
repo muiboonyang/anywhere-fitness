@@ -1,0 +1,49 @@
+.container {
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+.login {
+  margin: auto;
+  max-width: 550px;
+  padding: 0 20px;
+}
+
+.container h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.submit {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: 1px solid rgb(255, 255, 255);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.create {
+  background: rgb(161, 161, 161);
+  color: black;
+  border: 1px solid rgb(255, 255, 255);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.submit:hover,
+.create:hover {
+  background-color: rgb(255, 193, 7);
+  border: 1px solid rgb(255, 193, 7);
+  color: black;
+}

@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  /* transition: transform 0.5s; */
+  transition: background-color 0.5s;
+  margin: 0.8rem;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  box-sizing: content-box;
+  box-shadow: 2px 2px 10px grey;
+  background-color: white;
+  height: 415px;
+  width: 415px;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.container div {
+  padding: 0.5rem;
+}
+
+.container:hover {
+  /* transform: scale(1.1); */
+  /* background-color: rgb(166, 217, 241); */
+  background-color: rgb(218, 142, 201);
+}
+
+.title {
+  color: black;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  word-break: break-word;
+  margin-top: 10px;
+}
+
+.content {
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  margin-top: auto;
+}
+
+.postDetails {
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.postDetails p {
+  margin-bottom: 0;
+}
+
+.delete {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: rgb(0 0 0);
+  color: white;
+  border: 1px solid rgb(255 255 255);
+  width: 30%;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(255 193 7);
+  border: 1px solid rgb(255 193 7);
+  color: black;
+}
