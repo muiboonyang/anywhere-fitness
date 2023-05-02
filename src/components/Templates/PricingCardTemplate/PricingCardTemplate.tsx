@@ -38,19 +38,19 @@ const PricingCardTemplate = (props: PricingCardTemplateProps) => {
             if (res.status === 200) {
                 switch (event.target.value) {
                     case "1":
-                        window.location.replace("https://buy.stripe.com/test_28oeXvbVWadPfT2aEE") // 1 class
+                        window.location.replace("https://buy.stripe.com/test_5kA02BaRS5Xz6iscMR") // 1 class
                         break;
                     case "10":
-                        window.location.replace("https://buy.stripe.com/test_eVa02B0dedq122c001") // 10 classes
+                        window.location.replace("https://buy.stripe.com/test_aEU5mV8JK4TveOYfZ4") // 10 classes
                         break;
                     case "25":
-                        window.location.replace("https://buy.stripe.com/test_dR616F2lm3Pr9uE9AC") // 25 classes
+                        window.location.replace("https://buy.stripe.com/test_6oEdTrgcceu57mw9AH") // 25 classes
                         break;
                     case "50":
-                        window.location.replace("https://buy.stripe.com/test_7sI6qZgcc4Tv8qAcMP") // 50 classes
+                        window.location.replace("https://buy.stripe.com/test_aEU16FaRS3PrfT29AI") // 50 classes
                         break;
                     case "100":
-                        window.location.replace("https://buy.stripe.com/test_6oEcPn4tueu536g7sw") // 100 classes
+                        window.location.replace("https://buy.stripe.com/test_8wM9Db9NO0DfcGQ28h") // 100 classes
                         break;
                 }
                 getUserTransactions();
