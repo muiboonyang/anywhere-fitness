@@ -305,7 +305,7 @@ if IS_HEROKU:
     ]
 else:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'gym/static/')
+        os.path.join(BASE_DIR, 'gym/static')
     ]
 
 # Points to static folder in root directory (alongside manage.py)
