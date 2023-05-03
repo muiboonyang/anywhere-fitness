@@ -258,7 +258,7 @@ else:
 
 # Points to static folder in root directory (alongside manage.py)
 # Collected static files from the project will be stored in this folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Add compression and caching support
 # This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend
