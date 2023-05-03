@@ -244,9 +244,9 @@ CORS_ALLOWED_ORIGINS = [
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
 
 # Points to static folder in gym folder (alongside settings.py)
-
 if IS_HEROKU:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'build/static')
@@ -259,6 +259,7 @@ else:
 # Points to static folder in root directory (alongside manage.py)
 # Collected static files from the project will be stored in this folder
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Add compression and caching support
 # This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend
