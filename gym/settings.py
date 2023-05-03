@@ -264,4 +264,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Add compression and caching support
 # This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend
 # https://whitenoise.readthedocs.io/en/latest/django.html
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
