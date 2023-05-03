@@ -4,17 +4,17 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { UserProvider } from "./context/UserContext";
 import "./index.css";
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
-    <HashRouter>
+    <BrowserRouter>
         <AuthProvider>
             <UserProvider>
                 <App />
             </UserProvider>
         </AuthProvider>
-    </HashRouter>
+    </BrowserRouter>
 );

@@ -15,21 +15,19 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.urls.conf import include
 
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
-    path('', views.index, name='index'),
-
     # Django default paths
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 
+    # Custom paths
     path('auth/', include('accounts.urls')),
     path('review/', include('user_reviews.urls')),
     path('class/', include('user_classes.urls')),
@@ -37,6 +35,9 @@ urlpatterns = [
     path('layout/', include('gym_classes.urls')),
     path('instructors/', include('gym_instructors.urls')),
     path('packages/', include('gym_packages.urls')),
+
+    # Catch-all path
+    re_path(r'', views.catchall),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
