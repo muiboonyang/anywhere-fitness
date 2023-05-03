@@ -2,10 +2,10 @@
 Made for SEI33 - Project 4
 
 <h2>Introduction</h2>
-Anywhere Fitness First is a fitness class booking app made with React, Django and Postgres.
+Anywhere Fitness is a fitness class booking app made with React, Django and Postgres.
 <br>This app is hosted on Netlify and Heroku
 <br>
-<br><a href="https://anywhere-fitness-first.herokuapp.com/" target="_blank">Try it out here!</a>
+<br><a href="https://anywhere-fitness-sg.herokuapp.com/" target="_blank">Try it out here!</a>
 
 <h2>App Features</h2>
 
