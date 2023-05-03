@@ -173,6 +173,7 @@ const CreateAccount = () => {
                             <Form.Control
                                 required
                                 type="password"
+                                placeholder="Enter password"
                                 {...register("confirmPassword", {
                                     required: fieldErrorMessages.confirmPassword,
                                 })}

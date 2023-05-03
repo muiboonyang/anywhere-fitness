@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Roboto";
-  src: url('https://fonts.googleapis.com/css2?family=Roboto');
+  font-family: "Charlotte";
+  src: local("Charlotte"), url("./fonts/Charlotte/Charlotte.otf") format("truetype")
 }
 
 * {
@@ -10,5 +10,5 @@
 body {
   background-color: black;
   color: white;
-  font-family: "Roboto";
+  font-family: "Charlotte";
 }
