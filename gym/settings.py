@@ -134,65 +134,14 @@ TEMPLATES = [
 #           DATABASES
 #######################################  
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-#######################################
-# 1) Local sqlite3
-#######################################
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
-#     }
-# }
-
-#######################################
-# 2) Local postgresql
-#######################################
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_four',
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': '',
-#         'NAME': '',
-#         'USER': '',
-#         'PORT': '',
-#         'PASSWORD': '',
-#     }
-# }
-
-#######################################
-# 3) Local docker
-#######################################
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'project_four',
-#         'USER': 'ernest',
-#         'PASSWORD': 'ernest',
-#         'HOST': 'host.docker.internal',
-#         'PORT': '5432',
-#     }
-# }
-
-#######################################
-# 4) Heroku Postgresql
-#######################################
+# https://dev.to/mdrhmn/deploying-react-django-app-using-heroku-2gfa
 
 WSGI_APPLICATION = 'gym.wsgi.application'
 
-if "DATABASE_URL" in os.environ:
-    # Configure Django for DATABASE_URL environment variable.
-    DATABASES["default"] = dj_database_url.config()
-
+DATABASES = {
+    'default':
+        dj_database_url.config()
+}
 
 #######################################
 # Password validation
