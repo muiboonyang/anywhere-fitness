@@ -135,4 +135,4 @@ backend/.idea/dataSources.xml
 *.meta
 *.env
 /build/
-/staticfiles/
+/static/

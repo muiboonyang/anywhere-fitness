@@ -71,9 +71,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    # before django.contrib.staticfiles
     'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
@@ -93,6 +93,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # just after django.middleware.security.SecurityMiddleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -246,17 +247,11 @@ CORS_ALLOWED_ORIGINS = [
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 
+# Is used to include additional directories for collectstatic to look for.
 # Production - Points to build/static folder (created from npm run build)
-# Deployment - Points to gym/static folder in gym folder (alongside settings.py)
-if IS_HEROKU:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'build/static'),
-        os.path.join(BASE_DIR, 'build/static/media')
-    ]
-else:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'gym/static')
-    ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static'),
+]
 
 #######################################
 # USED DURING DEPLOYMENT ONLY
@@ -264,8 +259,8 @@ else:
 
 # Points to static folder in root directory (alongside manage.py)
 # Collected static files from the project will be stored in this folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Add compression and caching support
 # This combines automatic compression with the caching behaviour provided by Django’s ManifestStaticFilesStorage backend
