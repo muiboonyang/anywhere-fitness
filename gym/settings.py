@@ -43,7 +43,7 @@ if 'SECRET_KEY' in os.environ:
 IS_HEROKU = "DYNO" in os.environ
 
 if IS_HEROKU:
-    ALLOWED_HOSTS = ['anywhere-fitness-first.herokuapp.com']
+    ALLOWED_HOSTS = ['anywhere-fitness-sg.herokuapp.com']
 else:
     ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
 
@@ -229,7 +229,6 @@ SIMPLE_JWT = {
 CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    'https://anywhere-fitness-first.netlify.app',
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002',
