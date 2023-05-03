@@ -246,15 +246,21 @@ CORS_ALLOWED_ORIGINS = [
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 
-# Points to static folder in gym folder (alongside settings.py)
+# Production - Points to build/static folder (created from npm run build)
+# Deployment - Points to gym/static folder in gym folder (alongside settings.py)
 if IS_HEROKU:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'build/static')
+        os.path.join(BASE_DIR, 'build/static'),
+        os.path.join(BASE_DIR, 'build/static/media')
     ]
 else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'gym/static')
     ]
+
+#######################################
+# USED DURING DEPLOYMENT ONLY
+#######################################
 
 # Points to static folder in root directory (alongside manage.py)
 # Collected static files from the project will be stored in this folder
