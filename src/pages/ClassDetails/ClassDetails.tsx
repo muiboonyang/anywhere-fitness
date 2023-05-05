@@ -35,26 +35,26 @@ const ClassDetails = () => {
     const [classFormattedTime, setClassFormattedTime] = useState("");
     const [classDay, setClassDay] = useState("");
 
-    const [spotOne, setSpotOne] = useState("");
-    const [spotTwo, setSpotTwo] = useState("");
-    const [spotThree, setSpotThree] = useState("");
-    const [spotFour, setSpotFour] = useState("");
-    const [spotFive, setSpotFive] = useState("");
-    const [spotSix, setSpotSix] = useState("");
-    const [spotSeven, setSpotSeven] = useState("");
-    const [spotEight, setSpotEight] = useState("");
-    const [spotNine, setSpotNine] = useState("");
-    const [spotTen, setSpotTen] = useState("");
-    const [spotEleven, setSpotEleven] = useState("");
-    const [spotTwelve, setSpotTwelve] = useState("");
-    const [spotThirteen, setSpotThirteen] = useState("");
-    const [spotFourteen, setSpotFourteen] = useState("");
-    const [spotFifteen, setSpotFifteen] = useState("");
-    const [spotSixteen, setSpotSixteen] = useState("");
-    const [spotSeventeen, setSeventeen] = useState("");
-    const [spotEighteen, setSpotEighteen] = useState("");
-    const [spotNineteen, setSpotNineteen] = useState("");
-    const [spotTwenty, setSpotTwenty] = useState("");
+    const [spotOneBooked, setSpotOneBooked] = useState(false);
+    const [spotTwoBooked, setSpotTwoBooked] = useState(false);
+    const [spotThreeBooked, setSpotThreeBooked] = useState(false);
+    const [spotFourBooked, setSpotFourBooked] = useState(false);
+    const [spotFiveBooked, setSpotFiveBooked] = useState(false);
+    const [spotSixBooked, setSpotSixBooked] = useState(false);
+    const [spotSevenBooked, setSpotSevenBooked] = useState(false);
+    const [spotEightBooked, setSpotEightBooked] = useState(false);
+    const [spotNineBooked, setSpotNineBooked] = useState(false);
+    const [spotTenBooked, setSpotTenBooked] = useState(false);
+    const [spotElevenBooked, setSpotElevenBooked] = useState(false);
+    const [spotTwelveBooked, setSpotTwelveBooked] = useState(false);
+    const [spotThirteenBooked, setSpotThirteenBooked] = useState(false);
+    const [spotFourteenBooked, setSpotFourteenBooked] = useState(false);
+    const [spotFifteenBooked, setSpotFifteenBooked] = useState(false);
+    const [spotSixteenBooked, setSpotSixteenBooked] = useState(false);
+    const [spotSeventeenBooked, setSpotSeventeenBooked] = useState(false);
+    const [spotEighteenBooked, setSpotEighteenBooked] = useState(false);
+    const [spotNineteenBooked, setSpotNineteenBooked] = useState(false);
+    const [spotTwentyBooked, setSpotTwentyBooked] = useState(false);
 
     const getClassLayout = async () => {
         setIsLoading(true)
@@ -72,26 +72,26 @@ const ClassDetails = () => {
                     }).format(new Date(data.date))
                 );
 
-                setSpotOne(data.spot_one_booked);
-                setSpotTwo(data.spot_two_booked);
-                setSpotThree(data.spot_three_booked);
-                setSpotFour(data.spot_four_booked);
-                setSpotFive(data.spot_five_booked);
-                setSpotSix(data.spot_six_booked);
-                setSpotSeven(data.spot_seven_booked);
-                setSpotEight(data.spot_eight_booked);
-                setSpotNine(data.spot_nine_booked);
-                setSpotTen(data.spot_ten_booked);
-                setSpotEleven(data.spot_eleven_booked);
-                setSpotTwelve(data.spot_twelve_booked);
-                setSpotThirteen(data.spot_thirteen_booked);
-                setSpotFourteen(data.spot_fourteen_booked);
-                setSpotFifteen(data.spot_fifteen_booked);
-                setSpotSixteen(data.spot_sixteen_booked);
-                setSeventeen(data.spot_seventeen_booked);
-                setSpotEighteen(data.spot_eighteen_booked);
-                setSpotNineteen(data.spot_nineteen_booked);
-                setSpotTwenty(data.spot_twenty_booked);
+                setSpotOneBooked(data.spot_one_booked);
+                setSpotTwoBooked(data.spot_two_booked);
+                setSpotThreeBooked(data.spot_three_booked);
+                setSpotFourBooked(data.spot_four_booked);
+                setSpotFiveBooked(data.spot_five_booked);
+                setSpotSixBooked(data.spot_six_booked);
+                setSpotSevenBooked(data.spot_seven_booked);
+                setSpotEightBooked(data.spot_eight_booked);
+                setSpotNineBooked(data.spot_nine_booked);
+                setSpotTenBooked(data.spot_ten_booked);
+                setSpotElevenBooked(data.spot_eleven_booked);
+                setSpotTwelveBooked(data.spot_twelve_booked);
+                setSpotThirteenBooked(data.spot_thirteen_booked);
+                setSpotFourteenBooked(data.spot_fourteen_booked);
+                setSpotFifteenBooked(data.spot_fifteen_booked);
+                setSpotSixteenBooked(data.spot_sixteen_booked);
+                setSpotSeventeenBooked(data.spot_seventeen_booked);
+                setSpotEighteenBooked(data.spot_eighteen_booked);
+                setSpotNineteenBooked(data.spot_nineteen_booked);
+                setSpotTwentyBooked(data.spot_twenty_booked);
             }
         } catch (err) {
             // console.log(err);
@@ -110,53 +110,63 @@ const ClassDetails = () => {
     // To-do: pass to custom route (ClassDetails)
     ///////////////////////////////
 
-    const bookClassAndDeduct = async (spotName: string, spotNumber: string, spotPrice: string, ) => {
+    ///////////////////////////////
+    // POST - Deduct credit
+    ///////////////////////////////
+
+    const deductCredit = async (spotPrice: string) => {
+        return await customFetch(`/transactions/create/`, 'POST', {
+            classDebit: spotPrice,
+            transaction_type: "booking",
+            user: userProfile!.user_id,
+            name: userProfile!.name,
+        })
+    }
+
+    ///////////////////////////////
+    // POST - Update class layout, grey out spot
+    ///////////////////////////////
+
+    const updateClassResponse = async (spotName: string) => {
+        return await customFetch(`/layout/update/${params.id}`, 'POST', {
+            button_id: spotName,
+        });
+    }
+
+    ///////////////////////////////
+    // POST - Add class to bookings
+    ///////////////////////////////
+
+    const bookClassResponse = async (spotNumber: string, spotName: string) => {
+        return await customFetch(`/class/book/`, 'POST', {
+            class_type: classLayout.class_type,
+            class_instructor: classLayout.class_instructor,
+            date: classLayout.date,
+            time: classLayout.time,
+            spot: spotNumber,
+            spot_name: spotName,
+            name: userProfile!.name,
+            user: userProfile!.user_id,
+            class_id: classLayout.id,
+        });
+    }
+
+    const bookClassAndDeduct = async (spotName: string, spotNumber: string, spotPrice: string,) => {
         if (parseInt(spotPrice) > balance) {
             navigate("/pricing");
         } else {
             try {
-                ///////////////////////////////
-                // POST - Deduct credit
-                ///////////////////////////////
-
-                const {res} = await customFetch(`/transactions/create/`, 'POST', {
-                    classDebit: spotPrice,
-                    transaction_type: "booking",
-                    user: userProfile!.user_id,
-                    name: userProfile!.name,
-                });
-
-                ///////////////////////////////
-                // POST - Update class layout, grey out spot
-                ///////////////////////////////
-
-                const {res: updateClassResponse} = await customFetch(`/layout/update/${params.id}`, 'POST', {
-                    button_id: spotName,
-                });
-
-                ///////////////////////////////
-                // POST - Add class to bookings
-                ///////////////////////////////
-
-                const {res: bookClassResponse} = await customFetch(`/class/book/`, 'POST', {
-                    class_type: classLayout.class_type,
-                    class_instructor: classLayout.class_instructor,
-                    date: classLayout.date,
-                    time: classLayout.time,
-                    spot: spotNumber,
-                    spot_name: spotName,
-                    name: userProfile!.name,
-                    user: userProfile!.user_id,
-                    class_id: classLayout.id,
-                });
-
-                if (res.status || updateClassResponse.status || bookClassResponse.status === 200) {
+                deductCredit(spotPrice)
+                .then(() => updateClassResponse(spotName))
+                .then(() => bookClassResponse(spotNumber, spotName))
+                .finally(() => {
                     getUserTransactions();
                     navigate("/bookings");
                     setAlertMessage("Booking successful!");
-                } else {
+                })
+                .catch(() => {
                     setAlertMessage("Booking failed!");
-                }
+                })
             } catch (err) {
                 // console.log(err);
             }
@@ -200,305 +210,283 @@ const ClassDetails = () => {
                 </div>
 
                 <div className={styles.gymRow1}>
-                    {!spotOne ? (
-                        <button id="one" value="1" name="30" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            1
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotTwo ? (
-                        <button id="two" value="2" name="40" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            2
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotThree ? (
-                        <button id="three" value="3" name="50" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            3
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotFour ? (
-                        <button id="four" value="4" name="40" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            4
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotFive ? (
-                        <button id="five" value="5" name="30" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            5
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
+                    <button
+                        className={spotOneBooked ? styles.booked : ''}
+                        disabled={spotOneBooked}
+                        id="one"
+                        value="1"
+                        name="30"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotOneBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotOneBooked ? 'X' : '1'}
+                    </button>
+
+                    <button
+                        className={spotTwoBooked ? styles.booked : ''}
+                        disabled={spotTwoBooked}
+                        id="two"
+                        value="2"
+                        name="40"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotTwoBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotTwoBooked ? 'X' : '2'}
+                    </button>
+
+                    <button
+                        className={spotThreeBooked ? styles.booked : ''}
+                        disabled={spotThreeBooked}
+                        id="three"
+                        value="3"
+                        name="50"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotThreeBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotThreeBooked ? 'X' : '3'}
+                    </button>
+
+                    <button
+                        className={spotFourBooked ? styles.booked : ''}
+                        disabled={spotFourBooked}
+                        id="four"
+                        value="4"
+                        name="40"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotFourBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotFourBooked ? 'X' : '4'}
+                    </button>
+
+                    <button
+                        className={spotFiveBooked ? styles.booked : ''}
+                        disabled={spotFiveBooked}
+                        id="five"
+                        value="5"
+                        name="30"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotFiveBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotFiveBooked ? 'X' : '5'}
+                    </button>
                 </div>
 
                 <div className={styles.gymRow2}>
-                    {!spotSix ? (
-                        <button id="six" value="6" name="20" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            6
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotSeven ? (
-                        <button id="seven" value="7" name="20" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            7
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotEight ? (
-                        <button id="eight" value="8" name="20" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            8
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotNine ? (
-                        <button id="nine" value="9" name="20" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            9
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotTen ? (
-                        <button id="ten" value="10" name="20" onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}>
-                            10
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
+                    <button
+                        className={spotSixBooked ? styles.booked : ''}
+                        disabled={spotSixBooked}
+                        id="six"
+                        value="6"
+                        name="20"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotSixBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotSixBooked ? 'X' : '6'}
+                    </button>
+
+                    <button
+                        className={spotSevenBooked ? styles.booked : ''}
+                        disabled={spotSevenBooked}
+                        id="seven"
+                        value="7"
+                        name="20"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotSevenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotSevenBooked ? 'X' : '7'}
+                    </button>
+
+
+                    <button
+                        className={spotEightBooked ? styles.booked : ''}
+                        disabled={spotEightBooked}
+                        id="eight"
+                        value="8"
+                        name="20"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotEightBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotEightBooked ? 'X' : '8'}
+                    </button>
+
+                    <button
+                        className={spotNineBooked ? styles.booked : ''}
+                        disabled={spotNineBooked}
+                        id="nine"
+                        value="9"
+                        name="20"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotNineBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotNineBooked ? 'X' : '9'}
+                    </button>
+
+                    <button
+                        className={spotTenBooked ? styles.booked : ''}
+                        disabled={spotTenBooked}
+                        id="ten"
+                        value="10"
+                        name="20"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotTenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}>
+                        {spotTenBooked ? 'X' : '10'}
+                    </button>
                 </div>
 
                 <div className={styles.gymRow3}>
-                    {!spotEleven ? (
-                        <button
-                            id="eleven"
-                            value="11"
-                            name="10"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            11
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotTwelve ? (
-                        <button
-                            id="twelve"
-                            value="12"
-                            name="10"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            12
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotThirteen ? (
-                        <button
-                            id="thirteen"
-                            value="13"
-                            name="10"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            13
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotFourteen ? (
-                        <button
-                            id="fourteen"
-                            value="14"
-                            name="10"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            14
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotFifteen ? (
-                        <button
-                            id="fifteen"
-                            value="15"
-                            name="10"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            15
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
+                    <button
+                        className={spotElevenBooked ? styles.booked : ''}
+                        disabled={spotElevenBooked}
+                        id="eleven"
+                        value="11"
+                        name="10"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotElevenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotElevenBooked ? 'X' : '11'}
+                    </button>
+
+                    <button
+                        className={spotTwelveBooked ? styles.booked : ''}
+                        disabled={spotTwelveBooked}
+                        id="twelve"
+                        value="12"
+                        name="10"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotTwelveBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotTwelveBooked ? 'X' : '12'}
+                    </button>
+
+                    <button
+                        className={spotThirteenBooked ? styles.booked : ''}
+                        disabled={spotThirteenBooked}
+                        id="thirteen"
+                        value="13"
+                        name="10"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotThirteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotThirteenBooked ? 'X' : '13'}
+                    </button>
+
+                    <button
+                        className={spotFourteenBooked ? styles.booked : ''}
+                        disabled={spotFourteenBooked}
+                        id="fourteen"
+                        value="14"
+                        name="10"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotFourteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotFourteenBooked ? 'X' : '14'}
+                    </button>
+
+                    <button
+                        className={spotFifteenBooked ? styles.booked : ''}
+                        disabled={spotFifteenBooked}
+                        id="fifteen"
+                        value="15"
+                        name="10"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotFifteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotFifteenBooked ? 'X' : '15'}
+                    </button>
                 </div>
 
                 <div className={styles.gymRow4}>
-                    {!spotSixteen ? (
-                        <button
-                            id="sixteen"
-                            value="16"
-                            name="1"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            16
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotSeventeen ? (
-                        <button
-                            id="seventeen"
-                            value="17"
-                            name="1"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            17
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotEighteen ? (
-                        <button
-                            id="eighteen"
-                            value="18"
-                            name="1"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            18
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotNineteen ? (
-                        <button
-                            id="nineteen"
-                            value="19"
-                            name="1"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            19
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
-                    {!spotTwenty ? (
-                        <button
-                            id="twenty"
-                            value="20"
-                            name="1"
-                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
-                    }}
-                        >
-                            20
-                        </button>
-                    ) : (
-                        <button className={styles.booked} disabled>
-                            X
-                        </button>
-                    )}
+                    <button
+                        className={spotSixteenBooked ? styles.booked : ''}
+                        disabled={spotSixteenBooked}
+                        id="sixteen"
+                        value="16"
+                        name="1"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotSixteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotSixteenBooked ? 'X' : '16'}
+                    </button>
+
+                    <button
+                        className={spotSeventeenBooked ? styles.booked : ''}
+                        disabled={spotSeventeenBooked}
+                        id="seventeen"
+                        value="17"
+                        name="1"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotSeventeenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotSeventeenBooked ? 'X' : '17'}
+                    </button>
+
+
+                    <button
+                        className={spotEighteenBooked ? styles.booked : ''}
+                        disabled={spotEighteenBooked}
+                        id="eighteen"
+                        value="18"
+                        name="1"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotEighteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotEighteenBooked ? 'X' : '18'}
+                    </button>
+
+                    <button
+                        className={spotNineteenBooked ? styles.booked : ''}
+                        disabled={spotNineteenBooked}
+                        id="nineteen"
+                        value="19"
+                        name="1"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotNineteenBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotNineteenBooked ? 'X' : '19'}
+                    </button>
+
+                    <button
+                        className={spotTwentyBooked ? styles.booked : ''}
+                        disabled={spotTwentyBooked}
+                        id="twenty"
+                        value="20"
+                        name="1"
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                            setSpotTwentyBooked(true);
+                            bookClassAndDeduct(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                        }}
+                    >
+                        {spotTwentyBooked ? 'X' : '20'}
+                    </button>
                 </div>
             </div>
 
