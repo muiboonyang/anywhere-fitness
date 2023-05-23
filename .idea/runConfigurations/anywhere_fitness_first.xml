@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="anywhere-fitness-first" type="CompoundRunConfigurationType">
+    <toRun name="backend" type="Python.DjangoServer" />
+    <toRun name="frontend" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>
