@@ -48,10 +48,10 @@ class ClassLayoutUpdate(APIView):
         class_details = ClassDetails.objects.get(id=pk)
 
         # find the column to update
-        spot_number = request.data['button_id']  # request.data = button_id: one
+        spot_name = request.data['spotToUpdate']  # request.data = spotToUpdate: one
 
-        # set spot_{spot_number}_booked: True
-        newdict = {f"spot_{spot_number}_booked": "true"}
+        # set spot_{spot_name}_booked: True
+        newdict = {f"spot_{spot_name}_booked": "true"}
 
         serializer = ClassDetailsSerializer(instance=class_details, data=newdict, partial=True)
 
