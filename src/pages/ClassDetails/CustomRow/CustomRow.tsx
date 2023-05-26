@@ -5,7 +5,7 @@ import {SpotAvailabilityProps} from "../ClassDetails";
 
 interface CustomRowProps {
     spotsToPopulate: SpotAvailabilityProps[]
-    bookClass: (spotName: string, spotNumber: string, spotPrice: string) => Promise<void>
+    bookClass: (spotName: string, spotNumber: number, spotPrice: number) => Promise<void>
 }
 
 const CustomRow = (

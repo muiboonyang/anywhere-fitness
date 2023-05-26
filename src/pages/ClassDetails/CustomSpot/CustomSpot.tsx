@@ -4,7 +4,7 @@ import {SpotAvailabilityProps} from "../ClassDetails";
 
 interface CustomSpotProps {
     spotDetails: SpotAvailabilityProps
-    bookClass: (spotName: string, spotNumber: string, spotPrice: string) => Promise<void>
+    bookClass: (spotName: string, spotNumber: number, spotPrice: number) => Promise<void>
 }
 
 const CustomSpot = (
@@ -21,7 +21,7 @@ const CustomSpot = (
             value={spotDetails.spotNumber}
             name={spotDetails.spotCost.toString()}
             onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                bookClass(event.currentTarget.id, event.currentTarget.value, event.currentTarget.name)
+                bookClass(event.currentTarget.id, parseInt(event.currentTarget.value), parseInt(event.currentTarget.name))
             }}>
             {spotDetails.isSpotBooked ? 'X' : spotDetails.spotNumber}
         </button>

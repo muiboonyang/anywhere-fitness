@@ -210,7 +210,7 @@ const ClassDetails = () => {
     // POST - Deduct credit
     ///////////////////////////////
 
-    const deductCredit = async (spotPrice: string) => {
+    const deductCredit = async (spotPrice: number) => {
         await customFetch(`/transactions/create/`, 'POST', {
             classDebit: spotPrice,
             transaction_type: "booking",
@@ -233,7 +233,7 @@ const ClassDetails = () => {
     // POST - Add class to user's bookings
     ///////////////////////////////
 
-    const addToBookings = async (spotNumber: string, spotName: string) => {
+    const addToBookings = async (spotNumber: number, spotName: string) => {
         await customFetch(`/class/book/`, 'POST', {
             class_type: classDetails.class_type,
             class_instructor: classDetails.class_instructor,
@@ -251,8 +251,8 @@ const ClassDetails = () => {
     // POST - Book class flow
     ///////////////////////////////
 
-    const bookClass = async (spotName: string, spotNumber: string, spotPrice: string,) => {
-        if (parseInt(spotPrice) > balance) {
+    const bookClass = async (spotName: string, spotNumber: number, spotPrice: number) => {
+        if (spotPrice > balance) {
             navigate("/pricing");
         } else {
             try {
