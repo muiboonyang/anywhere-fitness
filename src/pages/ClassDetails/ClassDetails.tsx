@@ -275,7 +275,6 @@ const ClassDetails = () => {
 
     if (isLoading) return <LoadingSpinner/>;
 
-    // @ts-ignore
     return (
         <div className={styles.classDetailsContainer}>
             <br/>
