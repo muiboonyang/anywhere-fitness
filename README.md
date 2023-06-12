@@ -3,7 +3,7 @@ Made for SEI33 - Project 4
 
 <h2>Introduction</h2>
 Anywhere Fitness is a fitness class booking app made with React, Django and Postgres.
-<br>This app is hosted on Netlify and Heroku
+<br>This app is hosted on Heroku
 <br>
 <br><a href="https://anywhere-fitness-sg.herokuapp.com/" target="_blank">Try it out here!</a>
 
