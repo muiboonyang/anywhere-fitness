@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const useCustomFetch = () => {
     const navigate = useNavigate();
-    const {jwtTokens, setJwtTokens, setUserProfile, setAlertMessage } = useContext(AuthContext);
+    const {jwtTokens, setJwtTokens, setUserProfile, setAlertMessage,setIsLoading } = useContext(AuthContext);
 
     const originalRequest = async (url: string, config: {}) => {
         const res = await fetch(url, config);
@@ -65,6 +65,7 @@ const useCustomFetch = () => {
 
         // Initiate token refresh when access token has expired, to get new access token
         if (isExpired) {
+            setIsLoading(false)
             localStorage.removeItem("jwtTokens");
             navigate("/login");
             setAlertMessage("Please log in again!");
