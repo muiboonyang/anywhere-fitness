@@ -250,9 +250,10 @@ MEDIA_URL = "/media/"
 # Is used to include additional directories for collectstatic to look for.
 # Production - Points to build/static folder (created from npm run build)
 
-if platform.system() == "Darwin":
+
+if platform.system() == "Darwin" or IS_HEROKU:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'build/static'),
+          os.path.join(BASE_DIR, 'build/static'),
     ]
 else:
     STATICFILES_DIRS = [
