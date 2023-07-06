@@ -15,6 +15,7 @@ import dj_database_url
 from datetime import timedelta
 from pathlib import Path
 import os
+import platform
 from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -248,9 +249,15 @@ MEDIA_URL = "/media/"
 
 # Is used to include additional directories for collectstatic to look for.
 # Production - Points to build/static folder (created from npm run build)
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'),
-]
+
+if platform.system() == "Darwin":
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'build/static'),
+    ]
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'build\\static'),
+    ]
 
 #######################################
 # USED DURING DEPLOYMENT ONLY

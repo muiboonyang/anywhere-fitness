@@ -255,21 +255,17 @@ const ClassDetails = () => {
         if (spotPrice > balance) {
             navigate("/pricing");
         } else {
-            try {
-                deductCredit(spotPrice)
-                .then(() => updateClass(spotName))
-                .then(() => addToBookings(spotNumber, spotName))
-                .finally(() => {
-                    getUserTransactions();
-                    navigate("/bookings");
-                    setAlertMessage("Booking successful!");
-                })
-                .catch(() => {
-                    setAlertMessage("Booking failed!");
-                })
-            } catch (err) {
-                // console.log(err);
-            }
+            deductCredit(spotPrice)
+            .then(() => updateClass(spotName))
+            .then(() => addToBookings(spotNumber, spotName))
+            .finally(() => {
+                getUserTransactions();
+                navigate("/bookings");
+                setAlertMessage("Booking successful!");
+            })
+            .catch(() => {
+                setAlertMessage("Booking failed!");
+            })
         }
     };
 
