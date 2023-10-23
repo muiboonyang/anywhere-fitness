@@ -4,7 +4,7 @@ import './Footer.module.css'
 const Footer = () => {
     return (
         <footer>
-            All images on this website belong solely to <a href="https://www.groundzero.sg/" target="_blank" rel="noreferrer">Ground Zero Singapore</a>
+            All images and names on this website belong solely to <a href="https://www.groundzero.sg/" target="_blank" rel="noreferrer">Ground Zero Singapore</a>
         </footer>
     );
 };
